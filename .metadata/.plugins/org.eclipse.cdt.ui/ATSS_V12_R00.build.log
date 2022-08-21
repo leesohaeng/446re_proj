@@ -1,0 +1,10 @@
+13:33:57 **** Incremental Build of configuration Debug for project ATSS_V12_R00 ****
+make -j2 all 
+arm-none-eabi-size   ATSS_V12_R00.elf 
+   text	   data	    bss	    dec	    hex	filename
+  64656	    492	   3412	  68560	  10bd0	ATSS_V12_R00.elf
+Finished building: default.size.stdout
+ 
+
+13:33:58 Build Finished. 0 errors, 0 warnings. (took 501ms)
+

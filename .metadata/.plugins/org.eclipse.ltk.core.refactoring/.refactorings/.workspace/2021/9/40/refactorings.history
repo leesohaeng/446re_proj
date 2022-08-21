@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete 9 resources" deleteContents="false" description="Delete 9 resources" element1="/ATSS_V12_R00/1.pdf" element2="/ATSS_V12_R00/2.pdf" element3="/ATSS_V12_R00/3.pdf" element4="/ATSS_V12_R00/4.pdf" element5="/ATSS_V12_R00/5.pdf" element6="/ATSS_V12_R00/6.pdf" element7="/ATSS_V12_R00/7.pdf" element8="/ATSS_V12_R00/8.pdf" element9="/ATSS_V12_R00/9.pdf" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="9" stamp="1632620114681"/>
+</session>

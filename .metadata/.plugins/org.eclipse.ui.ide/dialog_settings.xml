@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ExternalProjectImportWizard">
+		<item key="WizardProjectsImportPage.STORE_NESTED_PROJECTS" value="true"/>
+		<item key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\sohaenglee\Desktop\ATSS_V12_R00(CAN_500Kbps(BS1-14,BS2-5,Prescale-5)"/>
+			<item value="C:\Users\sohaenglee\Desktop\code\[211124]ATSS_V12_R00(CAN_500Kbps(BS1-14,BS2-5,Prescale-5)"/>
+			<item value="C:\Users\sohaenglee\Desktop\새 폴더\[211124]ATSS_V12_R00(CAN_500Kbps(BS1-14,BS2-5,Prescale-5)"/>
+			<item value="C:\Users\sohaenglee\Desktop\STM32F446RET6_HAL\L432KC_TGL"/>
+			<item value="C:\Users\sohaenglee\Desktop\STM32F446RET6_HAL\STM32F103_BLUE_LCD"/>
+			<item value="C:\Users\sohaenglee\Desktop\ATSS_V12_R00"/>
+			<item value="C:\Users\sohaenglee\Desktop\CAN_TX_RX"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+	<section name="NewWizardAction">
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="com.st.stm32cube.common.projectcreation.ui.stm32projectwizard"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="com.st.stm32cube.common.projectcreation.ui.category"/>
+		</list>
+	</section>
+	<section name="BasicNewProjectResourceWizard">
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="593"/>
+		<item key="DIALOG_Y_ORIGIN" value="334"/>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
+	</section>
+	<section name="CleanDialogSettings">
+		<item key="TOGGLE_SELECTED" value="true"/>
+		<item key="DIALOG_WIDTH" value="581"/>
+		<item key="DIALOG_HEIGHT" value="434"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+		<item key="BUILD_NOW" value="true"/>
+		<item key="BUILD_ALL" value="false"/>
+	</section>
+</section>

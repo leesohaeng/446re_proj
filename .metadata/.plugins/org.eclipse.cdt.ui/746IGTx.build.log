@@ -1,0 +1,10 @@
+22:45:14 **** Incremental Build of configuration Debug for project 746IGTx ****
+make -j2 all 
+arm-none-eabi-size   746IGTx.elf 
+   text	   data	    bss	    dec	    hex	filename
+  21616	    120	   2096	  23832	   5d18	746IGTx.elf
+Finished building: default.size.stdout
+ 
+
+22:45:15 Build Finished. 0 errors, 0 warnings. (took 735ms)
+

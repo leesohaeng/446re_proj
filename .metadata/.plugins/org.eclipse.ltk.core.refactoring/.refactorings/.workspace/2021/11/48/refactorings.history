@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;L432KC_TGL&apos; to &apos;L432KC_TGL_TFTLCD&apos;" description="Rename resource &apos;L432KC_TGL&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/L432KC_TGL" name="L432KC_TGL_TFTLCD" stamp="1638012213569" updateReferences="true"/>
+</session>

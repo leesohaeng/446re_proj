@@ -1,0 +1,10 @@
+12:22:50 **** Incremental Build of configuration Debug for project 432KC_SWD_TEST ****
+make -j2 all 
+arm-none-eabi-size   432KC_SWD_TEST.elf 
+   text	   data	    bss	    dec	    hex	filename
+  15232	    120	   1728	  17080	   42b8	432KC_SWD_TEST.elf
+Finished building: default.size.stdout
+ 
+
+12:22:50 Build Finished. 0 errors, 0 warnings. (took 719ms)
+

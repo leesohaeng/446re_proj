@@ -1,0 +1,2 @@
+stm32f4xx_it.c:70:6:SysTick_Handler	0	static
+stm32f4xx_it.c:91:6:EXTI9_5_IRQHandler	0	static

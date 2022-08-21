@@ -1,0 +1,168 @@
+/**
+  ******************************************************************************
+  * @file           : 
+  * @brief         : 
+  ******************************************************************************
+  * @attention
+  *
+  *
+  ******************************************************************************
+  */
+
+/* Includes ------------------------------------------------------------------*/
+#include <AscTask.h>
+/* Code here ---------------------------------------------------------*/
+
+extern volatile unsigned int FR[4],FRo[4];
+extern volatile uint8_t FR_Flags[8];
+
+char R_Status[] = "(300000000)";    // relay status  11 byte
+
+void TaskManager(void)
+{
+	if(gval_flag_tic_fault1S || gval_flag_tic_fault100mS || gval_flag_tic_fault10mS || gval_flag_tic_fault1mS)
+	{
+//		printf("Task Execution Timeout!!\r\n");	//Task Execution Timeout
+//		HAL_Delay(500);
+
+		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, 0);	//Timeout indicator ON
+
+		gval_flag_tic_fault1S = 0;
+		gval_flag_tic_fault100mS = 0;
+		gval_flag_tic_fault10mS = 0;
+		gval_flag_tic_fault1mS = 0;
+	}
+
+	if(gval_flag_tic_1S)
+	{
+		Task1S();
+
+		gval_flag_tic_1S = OFF;
+	}
+
+	if(gval_flag_tic_100mS)
+	{
+		Task100mS();
+		gval_flag_tic_100mS = OFF;
+	}
+
+	if(gval_flag_tic_10mS)
+	{
+		Task10mS();
+		gval_flag_tic_10mS = OFF;
+	}
+
+	if(gval_flag_tic_1mS)
+	{
+		Task1mS();
+
+		gval_flag_tic_1mS = OFF;
+	}
+}
+volatile char wait3sec=0,blstart=0,recheck=0;
+void Task1S(void)			//1초간격 수행루틴
+{
+	uint8_t tx_str_temp[100];
+	static unsigned char i=0;
+
+	if(FR_Flags[2])    // air sus front
+	{
+		char str[15];
+		sprintf(str,"%5d%5d\r\n",ExtAdcInput[4],FR[2]);
+		HAL_UART_Transmit(&huart1,str, 12,1000);
+
+		if(ExtAdcInput[4]<FR[2]-1)      // ExtAdcInput[4] -> front left
+		{
+			strncpy(g_strData1,"311000000)",8);
+			UART1_RXServiceRoutine();
+			return;
+		}
+		else if(ExtAdcInput[4]>FR[2]+1)
+		{
+			strncpy(g_strData1,"300001100)",8);
+			UART1_RXServiceRoutine();
+			return;
+		}
+		else
+		{
+			strncpy(g_strData1,"300000000)",8);
+			UART1_RXServiceRoutine();
+			if(recheck++>=2)
+			{
+				FR_Flags[2] = 0;
+				recheck=0;
+			}
+		}
+	// 	printf("*1*%2d%2d%2d%2d\r\n",ExtAdcInput[0],ExtAdcInput[2],ExtAdcInput[4],ExtAdcInput[6]);
+	}
+
+	if(FR_Flags[3])   // air sus rear
+	{
+		char str[15];
+		sprintf(str,"%5d%5d\r\n",ExtAdcInput[6],FR[3]);
+		HAL_UART_Transmit(&huart1,str, 12,1000);
+
+		if(ExtAdcInput[6]<FR[3]-1)       // -1~ +1 범위 허용 , // ExtAdcInput[6] -> rear left
+		{
+			strncpy(g_strData1,"300110000)",8);
+			UART1_RXServiceRoutine();
+			return;
+		}
+		else if(ExtAdcInput[6]>FR[3]+1)
+		{
+			strncpy(g_strData1,"300000011)",8);
+			UART1_RXServiceRoutine();
+			return;
+		}
+		else
+		{
+			strncpy(g_strData1,"300000000)",8);
+			UART1_RXServiceRoutine();
+			if(recheck++>=2)
+			{
+				FR_Flags[2] = 0;
+				recheck=0;
+			}
+			FR_Flags[3] = 0;
+		}
+	}
+
+	if(wait3sec++==3)  // 3초마다 bluetooth로 데이터전송
+	{
+	 	printf("*3*%2d%2d%2d%2d\r\n",ExtAdcInput[4],ExtAdcInput[4],ExtAdcInput[6],ExtAdcInput[6]);
+	 	wait3sec=1;
+	}
+}
+
+void Task100mS(void)		//0.1초간격 수행루틴
+{
+	uint8_t tx_str_temp[100];
+
+	GPIOC->ODR ^= GPIO_PIN_0;	//Blinked status LED
+
+}
+void Task10mS(void)			//0.01초간격 수행루틴
+{
+
+}
+void Task1mS(void)			//0.001초간격 수행루틴
+{
+	GetADCResult();
+
+	SET_PWM_VOL(1, PID_Controll(0,CurAdcOutput[0]));
+	SET_PWM_VOL(2, PID_Controll(1,CurAdcOutput[1]));
+	SET_PWM_VOL(3, PID_Controll(2,CurAdcOutput[2]));
+	SET_PWM_VOL(4, PID_Controll(3,CurAdcOutput[3]));
+//	SET_PWM_VOL(5, PID_Controll(4,CurAdcOutput[4]));
+//	SET_PWM_VOL(6, PID_Controll(5,CurAdcOutput[5]));
+
+	if(g_bReceived1) {
+		HAL_UART_Transmit(&huart1,"Rcv USART Data..\r\n", 18,1000);
+		UART1_RXServiceRoutine();	//UART1 RX Service Routine
+	}
+	if(g_bReceived2) {
+		HAL_UART_Transmit(&huart1,"Rcv BTS   Data..\r\n", 18,1000);
+		UART2_RXServiceRoutine();	//UART2 RX Service Routine
+	}
+}
+/* End Code ---------------------------------------------------------*/
